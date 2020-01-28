@@ -3,7 +3,8 @@
 
 
 def get_list():
-    print('Print your list.\n(To Exit type ***)')
+    print("Введите строки по одной (через Enter).")
+    print("Чтобы завершить - наберите ('***')")
 
     inputList = []
     cycle = input()
@@ -12,7 +13,7 @@ def get_list():
         inputList.append(cycle)
         cycle = input()
 
-    print('Your list:')
+    print('Введенный список:')
     print(inputList)
 
     return inputList
@@ -32,22 +33,44 @@ def del_dupl_list(inputList):
 
     return inputList
 
+print("Задание 10: разница между двумя списками. ")
 
-inputList1 = get_list()
-inputList2 = get_list()
+answer = ''
+while answer != 'Y' and answer != 'N':
+    print("Автоматический режим ('Y') или ручной ввод в цикле ('N')?")
+    answer = input()
 
-inputList1 = del_dupl_list(inputList1)
-inputList2 = del_dupl_list(inputList2)
-# листы без дубликатов
+inputList1 = []
+inputList2 = []
+inputStr = ''
+while inputStr != '***':
+    if answer == 'N':
+        inputList1 = get_list()
+        inputList1 = get_list()
+        inputList1 = del_dupl_list(inputList1)
+        inputList2 = del_dupl_list(inputList2)
+    elif answer == 'Y':
+        inputList1 = ['abc', 'xyz', 'aba']
+        inputList2 = ['aba', 'dfg', 'sd', 'abc']
+        print("Проверяемые списки:")
+        print(inputList1)
+        print(inputList2)
+        inputStr = '***'
 
-outputList = []
+    outputList = []
 
-for i in inputList1:
-    if inputList2.count(i) == 0:
-        outputList.append(i)
+    for i in inputList1:
+        if inputList2.count(i) == 0:
+            outputList.append(i)
 
-for i in inputList2:
-    if inputList1.count(i) == 0:
-        outputList.append(i)
+    for i in inputList2:
+        if inputList1.count(i) == 0:
+            outputList.append(i)
 
-print('Answer:\n', outputList)
+    print("Разница между списками:")
+    print(outputList)
+
+    if answer == 'N':
+        print("\nДля выхода с программы наберите('***').")
+        print("Для продолжение - введите что-то другое")
+        inputStr = input()

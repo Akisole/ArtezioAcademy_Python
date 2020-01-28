@@ -2,7 +2,8 @@
 
 
 def get_list():
-    print('Print your list.\n(To Exit type ***)')
+    print("Введите строки по одной (через Enter).")
+    print("Чтобы завершить - наберите ('***')")
 
     inputList = []
     cycle = input()
@@ -11,21 +12,44 @@ def get_list():
         inputList.append(cycle)
         cycle = input()
 
-    print('Your list:')
+    print('Введенный список:')
     print(inputList)
 
     return inputList
 
-inputList = get_list()
+print("Задание 9: удаление дубликатов из списка "
+      "с сохранением порядка. ")
 
-inputList.reverse()
+answer = ''
+while answer != 'Y' and answer != 'N':
+    print("Автоматический режим ('Y') или ручной ввод в цикле ('N')?")
+    answer = input()
 
-i = 0
-while i != len(inputList) - 1:
-    if inputList.count(inputList[i]) > 1:
-        inputList.pop(i)
-    else:
-        i += 1
+inputList = []
+inputStr = ''
+while inputStr != '***':
+    if answer == 'N':
+        inputList = get_list()
+    elif answer == 'Y':
+        inputList = ['abc', 'xyz', 'aba', 'abc']
+        print("Проверяемый список:")
+        print(inputList)
+        inputStr = '***'
 
-inputList.reverse()
-print('Answer:\n', inputList)
+    inputList.reverse()
+
+    i = 0
+    while i != len(inputList) - 1:
+        if inputList.count(inputList[i]) > 1:
+            inputList.pop(i)
+        else:
+            i += 1
+
+    inputList.reverse()
+    print('Результат удаления дубликатов:')
+    print(inputList)
+
+    if answer == 'N':
+        print("\nДля выхода с программы наберите('***').")
+        print("Для продолжение - введите что-то другое")
+        inputStr = input()

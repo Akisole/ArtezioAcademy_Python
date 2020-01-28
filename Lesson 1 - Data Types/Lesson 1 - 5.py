@@ -12,21 +12,42 @@ def get_set():
 
     return inputList
 
+print("Задание 5: определение того, является ли "
+      "третий набор подмноджеством первого и второго наборов.")
 
-print('Print first set.\n(To Exit type ***)')
-set1 = set(get_set())
-print('Print second set.\n(To Exit type ***)')
-set2 = set(get_set())
-print('Print third set.\n(To Exit type ***)')
-set3 = set(get_set())
+answer = ''
+while answer != 'Y' and answer != 'N':
+    print("Автоматический режим ('Y') или ручной ввод в цикле ('N')?")
+    answer = input()
 
-print("Your set's:\n", set1, "\n", set2, "\n", set3)
+inputStr = ''
+set1 = ''
+set2 = ''
+set3 = ''
+while inputStr != '***':
+    if answer == 'N':
+        print('Введите первый набор (через Enter)')
+        print("Чтобы завершить - наберите ('***')")
+        set1 = set(get_set())
+        print('Введите второй набор (через Enter)')
+        print("Чтобы завершить - наберите ('***')")
+        set2 = set(get_set())
+        print('Введите третий набор (через Enter)')
+        print("Чтобы завершить - наберите ('***')")
+        set3 = set(get_set())
+    elif answer == 'Y':
+        set1 = {1, 2}
+        set2 = {2, 3}
+        set3 = {2}
+        inputStr = '***'
 
-outSet = set3.issubset(set1 | set2)
+    print("Проверка над множествами:\n", set1, "\n", set2, "\n", set3)
 
-print(outSet)
+    outSet = set3.issubset(set1 | set2)
 
-# if outSet:
-#     print("Answer: Subset")
-# else:
-#     print("Answer: Not a subset")
+    print("Итог: ", outSet)
+
+    if answer == 'N':
+        print("\nДля выхода с программы наберите('***').")
+        print("Для продолжение - введите что-то другое")
+        inputStr = input()

@@ -4,7 +4,8 @@
 
 
 def get_list():
-    print('Print your list.\n(To Exit type ***)')
+    print("Введите строки по одной (через Enter).")
+    print("Чтобы завершить - наберите ('***')")
 
     inputList = []
     cycle = input()
@@ -13,7 +14,7 @@ def get_list():
         inputList.append(cycle)
         cycle = input()
 
-    print('Your list:')
+    print('Введенные строки:')
     print(inputList)
 
     return inputList
@@ -27,11 +28,34 @@ def check_task4(inputStr):
         return False
 
 
-inputList = get_list()
+print("Задание 4: подсчет срок длинной более 2 символов и с совпадением"
+      " первого и последнего символа.")
 
-outputNum = 0
-for i in inputList:
-    if check_task4(i):
-        outputNum += 1
+answer = ''
+while answer != 'Y' and answer != 'N':
+    print("Автоматический режим ('Y') или ручной ввод в цикле ('N')?")
+    answer = input()
 
-print('Answer: ', outputNum)
+inputList = []
+inputStr = ''
+
+while inputStr != '***':
+    if answer == 'N':
+        inputList = get_list()
+    elif answer == 'Y':
+        inputList = ['abc', 'xyz', 'aba', '1221']
+        print("Проверяемые строки:")
+        print(inputList)
+        inputStr = '***'
+
+    outputNum = 0
+    for i in inputList:
+        if check_task4(i):
+            outputNum += 1
+
+    print("Число строк, удовлетворяющих условию: ", outputNum)
+
+    if answer == 'N':
+        print("\nДля выхода с программы наберите('***').")
+        print("Для продолжение - введите что-то другое")
+        inputStr = input()

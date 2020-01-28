@@ -3,33 +3,48 @@
 
 
 def capital_first_letter(strInput):
-    if strInput[0].isalpha():
+    if len(strInput) > 0 and strInput[0].isalpha():
         strInput = strInput[0].upper() + strInput[1:]
     return strInput
 
-print('Your input:')
-inputStr = input()
+print("Задание 1: любое слово в строке с заглавной буквы.")
 
-checkSpace = False
-if inputStr[len(inputStr) - 1] == ' ':
-    inputStr = inputStr[:-1]
-    checkSpace = True
-
-listStr = []
-findStr = inputStr
-
-space = findStr.find(' ')
-while space != -1:
-    listStr.append(capital_first_letter(findStr[:space + 1]))
-    findStr = findStr[space + 1:]
-    space = findStr.find(' ')
-listStr.append(capital_first_letter(findStr))
-
+answer = ''
+while answer != 'Y' and answer != 'N':
+    print("Автоматический режим ('Y') или ручной ввод в цикле ('N')?")
+    answer = input()
 
 inputStr = ''
-for i in listStr:
-    inputStr += i
-if checkSpace:
-    inputStr += ' '
+if answer == 'N':
+    print("Введите проверяемую строку:")
+    inputStr = input()
+elif answer == 'Y':
+    inputStr = 'swa Sa 1rd adddf'
+    print("Проверяемая строка:")
+    print(inputStr)
 
-print(inputStr)
+while inputStr != '***':
+
+    listStr = []
+    findStr = inputStr
+
+    space = findStr.find(' ')
+    while space != -1:
+        listStr.append(capital_first_letter(findStr[:space + 1]))
+        findStr = findStr[space + 1:]
+        space = findStr.find(' ')
+    listStr.append(capital_first_letter(findStr))
+
+    inputStr = ''
+    for i in listStr:
+        inputStr += i
+
+    print("Итог")
+    print(inputStr)
+
+    if answer == 'N':
+        print("\nВведите проверяемую строку.")
+        print("Для завершения наберите ('***').")
+        inputStr = input()
+    elif answer == 'Y':
+        inputStr = '***'
