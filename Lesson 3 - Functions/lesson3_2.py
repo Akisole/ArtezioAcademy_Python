@@ -22,7 +22,7 @@ def rec_ar(argum, lvl, dictid):
             search = dictid.get(idi)
             if search is None:
                 dictid.setdefault(idi, lvl)
-            elif lvl > search:
+            elif idi == next(iter(dictid)):
                 raise Exception("Зациклились")
 
     for i in argum:
@@ -67,6 +67,7 @@ def func(*args, **kwargs):
     print("Список чисел:", lisnnum, '\nСумма:', summer,
           '\nПроизведение:', multiple)
 
+
 try:
     print("Проверяем функцию вида:")
     print('foo(1, 2, [3, 4, (5, 6, 0)], a=(10, 11), '
@@ -89,11 +90,11 @@ except Exception as exep:
 
 try:
     print("\nПроверяем функцию вида:")
-    print('foo(1, 2, [3, 4, (5, 6, 0)], a, b=(3, 4, [5, 6, [7, 8], []]))')
-    print("где a = [1, 2, 3, [1, 2, 3]]; a[3].append(a)")
+    print('foo(1, 2, [3, 4, (5, 6, 0)], a=A, b=(3, 4, [5, 6, [7, 8], []]))')
+    print("где A = [1, 2, 3, [1, 2, 3]]; A[3].append(A)")
     A = [1, 2, 3, [1, 2, 3]]
     A[3].append(A)
-    func(1, 2, [3, 4, (5, 6, 0)], A, b=(3, 4, [5, 6, [7, 8], []]))
+    func(1, 2, [3, 4, (5, 6, 0)], a=A, b=(3, 4, [5, 6, [7, 8], []]))
 except Exception as exep:
     print(exep)
 
@@ -108,7 +109,7 @@ except Exception as exep:
     print(exep)
 
 try:
-    print("\nКонтрпример, требующий доработки алгоритма:\n",
+    print("\nПроверяем функцию вида:\n",
           'foo(1, 2, [a, 4, (a, 6, 0)], b=(3, 4, [5, 6, [7, 8], []]))')
     print("где a = [1, 2, 3]")
 
